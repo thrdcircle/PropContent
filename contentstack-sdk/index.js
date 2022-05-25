@@ -39,6 +39,9 @@ export const { onEntryChange } = ContentstackLivePreview;
 
 const renderOption = {
  span: (node, next) => next(node.children),
+  link: (entry, metadata) => {
+       '<a href="{metadata.attributes.href}">{metadata.text}</a>'
+   },
 };
 
 export default {
