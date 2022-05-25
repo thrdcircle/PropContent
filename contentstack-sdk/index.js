@@ -38,6 +38,15 @@ ContentstackLivePreview.init({
 export const { onEntryChange } = ContentstackLivePreview;
 
 const renderOption = {
+ block: {
+      'product': (entry, metadata) => {
+              '<div>
+                  <h2 >{entry.title}</h2>
+                   <img src={entry.product_image.url}   alt={entry.product_image.title}/>
+                  <p>{entry.price}</p>
+              </div>'
+        },
+
    inline: {
        '$default': (entry) => {
            '<span><b>{entry.title}</b> - {entry.description}</span>'
