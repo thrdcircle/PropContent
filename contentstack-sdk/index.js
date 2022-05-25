@@ -38,9 +38,16 @@ ContentstackLivePreview.init({
 export const { onEntryChange } = ContentstackLivePreview;
 
 const renderOption = {
-  span: (node, next) => next(node.children),
+   inline: {
+       '$default': (entry) => {
+           '<span><b>{entry.title}</b> - {entry.description}</span>'
+       }
+   },
   display: (asset, metadata) => {
        '<img src={metadata.attributes.src} alt={metadata.alt} />'
+   },
+  link: (entry, metadata) => {
+       '<a href="{metadata.attributes.href}">{metadata.text}</a>'
    }
 };
 
