@@ -39,6 +39,9 @@ export const { onEntryChange } = ContentstackLivePreview;
 
 const renderOption = {
   span: (node, next) => next(node.children),
+  display: (asset, metadata) => {
+       '<img src={metadata.attributes.src} alt={metadata.alt} />'
+   }
 };
 
 export default {
