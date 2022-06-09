@@ -77,7 +77,7 @@ export default {
       const query = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) query.includeReference(referenceFieldPath);
       query
-        .includeEmbeddedItems()
+        .includeEmbeddedItems(jsonRtePath)
         .includeOwner()
         .toJSON()
         .find()
@@ -113,7 +113,7 @@ export default {
     return new Promise((resolve, reject) => {
       const blogQuery = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) blogQuery.includeReference(referenceFieldPath);
-      blogQuery.includeEmbeddedItems().includeOwner().toJSON();
+      blogQuery.includeEmbeddedItems(jsonRtePath).includeOwner().toJSON();
       const data = blogQuery.where('url', `${entryUrl}`).find();
       data.then(
         (result) => {
