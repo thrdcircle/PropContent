@@ -46,11 +46,11 @@ const renderOption = {
        '<img src={metadata.attributes.src} alt={metadata.alt} />'
    },
  block: {
-      'blog': (entry, metadata) => {
+      'image': (entry, metadata) => {
               '<div>
                   <h2 >{entry.title}</h2>
-                   <img src={entry.blog_image.url}   alt={entry.blog_image.title}/>
-                  <p>{entry.price}</p>
+                   <img src={entry.image_image.url}   alt={entry.image_image.title}/>
+                  
               </div>'
         },
 };
