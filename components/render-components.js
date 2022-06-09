@@ -2,7 +2,6 @@ import React from 'react';
 
 import Section from './section';
 import HeroBanner from './hero-banner';
-import BlogBanner from './blog-banner';
 import CardSection from './card-section';
 import TeamSection from './team-section';
 import BlogSection from './blog-section';
