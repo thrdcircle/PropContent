@@ -53,6 +53,14 @@ const renderOption = {
                   
               </div>'
         },
+   inline: {
+       '$default': (entry) => {
+           '<span><b>{entry.title}</b> - {entry.description}</span>'
+       }
+   },
+   link: (entry, metadata) => {
+       '<a href="{metadata.attributes.href}">{metadata.text}</a>'
+   },
 };
 
 export default {
