@@ -42,6 +42,9 @@ const renderOption = {
   link: (entry, metadata) => {
        '<a href="{metadata.attributes.href}">{metadata.text}</a>'
    },
+  display: (asset, metadata) => {
+       '<img src={metadata.attributes.src} alt={metadata.alt} />'
+   },
 };
 
 export default {
