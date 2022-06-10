@@ -77,20 +77,21 @@ export default {
       const query = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) query.includeReference(referenceFieldPath);
       query
-        .includeEmbeddedItems()
         .includeOwner()
         .toJSON()
+      includeEmbeddedItems()
         .find()
-        .then(
-          (result) => {
-            jsonRtePath
-              && Utils.jsonToHTML({
-                entry: result,
-                paths: jsonRtePath,
-                renderOption,
-              });
-            resolve(result);
-          },
+        .then((result) => {
+          result.forEach(entry => {
+            Contentstack.Utils.jsonToHtml({
+              entry,
+              path: ["rte_fieldUid", "group.rteFieldUID"],
+              renderOption
+            })
+          })
+            ;
+          resolve(result);
+        },
           (error) => {
             reject(error);
           },
