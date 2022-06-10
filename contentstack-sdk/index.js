@@ -83,7 +83,8 @@ export default {
         .find()
         .then((result) => {
           result.forEach(entry => {
-            Contentstack.Utils.jsonToHtml({
+            jsonRtePath
+              && Utils.jsonToHtml({
               entry,
               path: ["rte_fieldUid", "group.rteFieldUID"],
               renderOption
