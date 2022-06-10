@@ -79,7 +79,7 @@ export default {
       query
         .includeOwner()
         .toJSON()
-      includeEmbeddedItems()
+        .includeEmbeddedItems()
         .find()
         .then((result) => {
           result.forEach(entry => {
