@@ -72,33 +72,32 @@ export default {
    * @param {* Json RTE path} jsonRtePath
    *
    */
-  getEntry({ contentTypeUid, referenceFieldPath, jsonRtePath }) {
+ getEntry({ contentTypeUid, referenceFieldPath, jsonRtePath }) {
     return new Promise((resolve, reject) => {
       const query = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) query.includeReference(referenceFieldPath);
       query
+        .includeEmbeddedItems()
         .includeOwner()
         .toJSON()
-        .includeEmbeddedItems()
         .find()
-        .then((result) => {
-          result.forEach(entry => {
+        .then(
+          (result) => {
             jsonRtePath
-              && Utils.jsonToHtml({
-              entry,
-              path: ["rte_fieldUid", "group.rteFieldUID"],
-              renderOption
-            })
-          })
-            ;
-          resolve(result);
-        },
+              && Utils.jsonToHTML({
+                entry: result,
+                paths: jsonRtePath,
+                renderOption,
+              });
+            resolve(result);
+          },
           (error) => {
             reject(error);
           },
         );
     });
   },
+
 
   /**
    *fetches specific entry from a content-type
