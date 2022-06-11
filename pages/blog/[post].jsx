@@ -60,7 +60,7 @@ export default function BlogPost({ blogPost, page, pageUrl }) {
             </p>
           )}
           {post && post.body ? (
-            <div {...post.$?.body}>{parse(post.body)}</div>
+            <div {...post.$?.body}>{(post.body)}</div>
           ) : (
             <Skeleton height={800} width={600} />
           )}
