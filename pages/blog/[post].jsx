@@ -39,6 +39,14 @@ export default function BlogPost({ blogPost, page, pageUrl }) {
         <Skeleton height={400} />
       )}
       <div className='blog-container'>
+        {blog.featured_image && (
+              <img
+                {...blog.featured_image.$?.url}
+                src={blog.featured_image.url}
+                alt={blog.featured_image.filename}
+                className='blog-post-img'
+              />
+            )}
         <article className='blog-detail'>
           {post && post.title ? (
             <h2 {...post.$?.title}>{post.title}</h2>
