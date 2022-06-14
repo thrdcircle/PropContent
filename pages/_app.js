@@ -58,7 +58,6 @@ function MyApp(props) {
       </Head>
       <Layout
         header={header}
-        footer={footer}
         page={page}
         blogPost={blogPost}
         blogList={blogList}
