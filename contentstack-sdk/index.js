@@ -38,29 +38,7 @@ ContentstackLivePreview.init({
 export const { onEntryChange } = ContentstackLivePreview;
 
 const renderOption = {
- span: (node, next) => next(node.children),
-  link: (entry, metadata) => {
-       '<a href="{metadata.attributes.href}">{metadata.text}</a>'
-   },
-  display: (asset, metadata) => {
-       '<img src={metadata.attributes.src} alt={metadata.alt} />'
-   },
- block: {
-      'image': (entry, metadata) => {
-              '<div>
-                  <h2 >{entry.title}</h2>
-                   <img src={entry.image_image.url}   alt={entry.image_image.title}/>
-                  
-              </div>'
-        },
-   inline: {
-       '$default': (entry) => {
-           '<span><b>{entry.title}</b> - {entry.description}</span>'
-       }
-   },
-   link: (entry, metadata) => {
-       '<a href="{metadata.attributes.href}">{metadata.text}</a>'
-   },
+  span: (node, next) => next(node.children),
 };
 
 export default {
@@ -72,12 +50,11 @@ export default {
    * @param {* Json RTE path} jsonRtePath
    *
    */
- getEntry({ contentTypeUid, referenceFieldPath, jsonRtePath }) {
+  getEntry({ contentTypeUid, referenceFieldPath, jsonRtePath }) {
     return new Promise((resolve, reject) => {
       const query = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) query.includeReference(referenceFieldPath);
       query
-        .includeEmbeddedItems()
         .includeOwner()
         .toJSON()
         .find()
@@ -98,7 +75,6 @@ export default {
     });
   },
 
-
   /**
    *fetches specific entry from a content-type
    *
@@ -114,7 +90,7 @@ export default {
     return new Promise((resolve, reject) => {
       const blogQuery = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) blogQuery.includeReference(referenceFieldPath);
-      blogQuery.includeEmbeddedItems().includeOwner().toJSON();
+      blogQuery.includeOwner().toJSON();
       const data = blogQuery.where('url', `${entryUrl}`).find();
       data.then(
         (result) => {
