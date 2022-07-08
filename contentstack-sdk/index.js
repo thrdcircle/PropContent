@@ -56,12 +56,13 @@ export default {
       if (referenceFieldPath) query.includeReference(referenceFieldPath);
       query
         .includeOwner()
+        .includeEmbeddedItems()
         .toJSON()
         .find()
         .then(
           (result) => {
-            jsonRtePath
-              && Utils.jsonToHTML({
+            jsonRtePath &&
+              Utils.jsonToHTML({
                 entry: result,
                 paths: jsonRtePath,
                 renderOption,
@@ -70,7 +71,7 @@ export default {
           },
           (error) => {
             reject(error);
-          },
+          }
         );
     });
   },
@@ -84,18 +85,16 @@ export default {
    * @param {* Json RTE path} jsonRtePath
    * @returns
    */
-  getEntryByUrl({
-    contentTypeUid, entryUrl, referenceFieldPath, jsonRtePath,
-  }) {
+  getEntryByUrl({ contentTypeUid, entryUrl, referenceFieldPath, jsonRtePath }) {
     return new Promise((resolve, reject) => {
       const blogQuery = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) blogQuery.includeReference(referenceFieldPath);
-      blogQuery.includeOwner().toJSON();
+      blogQuery.includeOwner().includeEmbeddedItems().toJSON();
       const data = blogQuery.where('url', `${entryUrl}`).find();
       data.then(
         (result) => {
-          jsonRtePath
-            && Utils.jsonToHTML({
+          jsonRtePath &&
+            Utils.jsonToHTML({
               entry: result,
               paths: jsonRtePath,
               renderOption,
@@ -105,7 +104,7 @@ export default {
         (error) => {
           console.error(error);
           reject(error);
-        },
+        }
       );
     });
   },
