@@ -1,8 +1,8 @@
-import * as contentstack from 'contentstack';
-import * as Utils from '@contentstack/utils';
+import * as contentstack from "contentstack";
+import * as Utils from "@contentstack/utils";
 
-import ContentstackLivePreview from '@contentstack/live-preview-utils';
-import getConfig from 'next/config';
+import ContentstackLivePreview from "@contentstack/live-preview-utils";
+import getConfig from "next/config";
 
 const { publicRuntimeConfig } = getConfig();
 const envConfig = process.env.CONTENTSTACK_API_KEY
@@ -15,7 +15,7 @@ const Stack = contentstack.Stack({
     : envConfig.NEXT_PUBLIC_CONTENTSTACK_API_KEY,
   delivery_token: envConfig.CONTENTSTACK_DELIVERY_TOKEN,
   environment: envConfig.CONTENTSTACK_ENVIRONMENT,
-  region: envConfig.CONTENTSTACK_REGION ? envConfig.CONTENTSTACK_REGION : 'us',
+  region: envConfig.CONTENTSTACK_REGION ? envConfig.CONTENTSTACK_REGION : "us",
   live_preview: {
     enable: true,
     management_token: envConfig.CONTENTSTACK_MANAGEMENT_TOKEN,
@@ -55,8 +55,8 @@ export default {
       const query = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) query.includeReference(referenceFieldPath);
       query
-        .includeOwner()
         .includeEmbeddedItems()
+        .includeOwner()
         .toJSON()
         .find()
         .then(
@@ -90,7 +90,7 @@ export default {
       const blogQuery = Stack.ContentType(contentTypeUid).Query();
       if (referenceFieldPath) blogQuery.includeReference(referenceFieldPath);
       blogQuery.includeOwner().includeEmbeddedItems().toJSON();
-      const data = blogQuery.where('url', `${entryUrl}`).find();
+      const data = blogQuery.where("url", `${entryUrl}`).find();
       data.then(
         (result) => {
           jsonRtePath &&
