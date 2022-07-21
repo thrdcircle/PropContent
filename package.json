@@ -11,9 +11,9 @@
     "lint": "eslint pages/**/*.jsx"
   },
   "dependencies": {
-    "@contentstack/live-preview-utils": "^1.1.0",
-    "@contentstack/utils": "^1.1.2",
-    "contentstack": "^3.15.2",
+    "@contentstack/live-preview-utils": "^1.0.1",
+    "@contentstack/utils": "^1.1.1",
+    "contentstack": "^3.15.0",
     "html-react-parser": "^1.4.6",
     "moment": "^2.29.2",
     "next": "12.1.6",
@@ -34,3 +34,4 @@
     "typescript": "4.6.4"
   }
 }
+
